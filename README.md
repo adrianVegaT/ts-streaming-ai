@@ -106,4 +106,6 @@ lib/
 
 ## Demo
 
+[ts-streaming-ai.vercel.app](https://ts-streaming-ai.vercel.app)
+
 Deployed on Vercel with TOKEN_LIMIT configured to control usage in demo mode.
