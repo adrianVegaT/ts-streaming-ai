@@ -29,13 +29,25 @@ export async function proxy(request: NextRequest) {
         }
     )
 
-    await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+        const isApiRoute = request.nextUrl.pathname.startsWith('/api/')
+
+        if (isApiRoute) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        const loginUrl = request.nextUrl.clone()
+        loginUrl.pathname = '/auth/login'
+        return NextResponse.redirect(loginUrl)
+    }
 
     return supabaseResponse
 }
 
 export const config = {
     matcher: [
-        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+        '/((?!auth|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 }

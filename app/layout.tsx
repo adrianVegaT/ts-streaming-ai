@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rag PDF Chat",
-  description: "Upload a PDF and ask questions about its content using RAG (Retrieval-Augmented Generation) techniques with OpenAI and Anthropic models.",
+  title: "Streaming AI Chat",
+  description: "A real-time streaming AI chat application built with Next.js, Supabase, and Claude's models.",
 };
 
 export default function RootLayout({
